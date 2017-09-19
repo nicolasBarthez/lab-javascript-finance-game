@@ -1,0 +1,33 @@
+* {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 10px;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  padding: 10px 30px;
+}
+
+.logo-container > img {
+  width: 150px;
+  padding: 10px;
+}
+
+.nav-container {
+  margin: auto;
+}
+
+h1 {
+  font-size: 3rem;
+  text-align: center;
+}
+
+.question1 {
+  width: 900px;
+  height: auto;
+  margin: auto;
+}
