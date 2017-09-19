@@ -16,17 +16,53 @@
         <div class="nav-container">
           <h1>Warm-up - Financial Training Game</h1>
         </div>
+        <div class="nav-profile">
+          <div class="nav-photo-profil">
+            <img src="./images/avatar.png" alt="">
+          </div>
+          <div class="nav-user-profile">
+            <div id ="userName" class="nav-user-name">Nicolas Barthez</div>
+          <div class="nav-status">
+            <div class="nav-status-light"></div>
+            <div class="nav-status-pseudo">@nico777</div>
+          </div>
+        </div>
       </nav>
       <img class="nav-bar-wave" src="./images/nav-bar-wave.png" alt="">
-      <section>
-        <h2>Question</h2>
-        <p>Ecrire ici la question / contexte</p>
-        <div class="screen-question">
-          <img src="question1.png" class="question1"></img>
-        </div>
-        <div class="screen-answer">
-            
-        </div>
+      <section class="main-container">
+        <section class="block-left">
+          <div class="container-left">
+            <h4 id="level" class="level-detail">- Level 1 (à mettre en auto) -</h4>
+            <h4 class="target-detail">Target: <span id="target">1000</span> €</h4>
+            <h4 class="score-detail">Portfolio value : <span id="score">1000</span> €</h4>
+            <h4 class="time-detail">Times left : <span id="timer">1000</span> sec.</h4>
+          </div>
+          <div class="wheel-container">
+            <button class="btn-launch-wheel">wheel of chance</button>
+            <p class="wheel-result"></p>
+          </div>
+        </section>
+        <section class="block-center">
+          <h2 class="question-title">Question category: <span id="question-category" class="question-title" ></span></h2>
+          <p id="question-details" class="question-details">Launch the wheel of chance to start the game</p>
+          <div class="screen-question">
+            <img id="img-q-r" src="question1.png" class="question1"></img>
+          </div>
+          <div class="screen-answer">
+            <div class="response"></div>
+            <div class="answer-btn">
+              <button id="buy-btn" class="buy-btn">GO LONG</button>
+              <button id="sell-btn" class="sell-btn">GO SHORT</button>
+            </div>
+          </div>
+        </section>
+        <section class="block-right">
+          <div class="container-right">
+            <h4 class="history">My latest positions</h4>
+            <div class="news-containers"></div>
+            </div>
+          </div>
+        </section>
       </section>
 
 

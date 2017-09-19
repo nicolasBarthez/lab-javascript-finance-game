@@ -1,46 +1,67 @@
 var level1 = {
+  level: "Level 1",
   time: 600000,
   target: 150000,
   Fundemental: [
     {
-      question: "FundementalQ1 - What's comming next?",
-      imageQuestion: "img/Id1/question.png",
-      solutions: ["fall of 10%", "Fall of 20%", "Rise of 5%"],
-      correctAnswer: ["fall of 10%", "The reason of this is...", "img/xxx.png"]
+      question:
+        "Le 14 septembre 2017 : la Banque Centrale d’Angleterre laisse ses taux inchangé mais évoque une hausse future de ses taux directeurs pour combattre la hausse de l’inflation.\nWhat's comming next?",
+      imageQuestion: "images/questions/fundementals/fq1/question1.png",
+      vol: -0.031,
+      correctAnswer: [
+        "sell",
+        "The reason of this is...",
+        "images/questions/fundementals/fq1/answer1.png"
+      ]
     },
     {
-      question: "FundementalQ2 - What's comming next?",
-      imageQuestion: "img/Id1/question.png",
-      solutions: ["fall of 10%", "Fall of 20%", "Rise of 5%"],
-      correctAnswer: ["fall of 10%", "The reason of this is...", "img/xxx.png"]
+      question:
+        "Le 14 septembre 2017 : la Banque Centrale d’Angleterre laisse ses taux inchangé mais évoque une hausse future de ses taux directeurs pour combattre la hausse de l’inflation.\nWhat's comming next?",
+      imageQuestion: "images/questions/fundementals/fq1/question1.png",
+      vol: -0.031,
+      correctAnswer: [
+        "sell",
+        "The reason of this is...",
+        "images/questions/fundementals/fq1/answer1.png"
+      ]
     }
   ],
   Chart: [
     {
-      question: "ChartQ1 - What's comming next?",
-      imageQuestion: "img/Id1/question.png",
+      question: "BuY - What's comming next?",
+      imageQuestion: "images/questions/chart/cq1/question1.png",
       solutions: ["fall of 10%", "Fall of 20%", "Rise of 5%"],
-      correctAnswer: ["fall of 10%", "The reason of this is...", "img/xxx.png"]
+      correctAnswer: ["buy", "The reason of this is...", "img/xxx.png"]
     },
     {
-      question: "ChartQ2 - What's comming next?",
-      imageQuestion: "img/Id1/question.png",
+      question: "BuY - What's comming next?",
+      imageQuestion: "images/questions/chart/cq1/question1.png",
       solutions: ["fall of 10%", "Fall of 20%", "Rise of 5%"],
-      correctAnswer: ["fall of 10%", "The reason of this is...", "img/xxx.png"]
+      correctAnswer: ["buy", "The reason of this is...", "img/xxx.png"]
     }
   ],
   Macroeconomy: [
     {
-      question: "MacroeconomyQ1 - What's comming next?",
-      imageQuestion: "img/Id1/question.png",
-      solutions: ["fall of 10%", "Fall of 20%", "Rise of 5%"],
-      correctAnswer: ["fall of 10%", "The reason of this is...", "img/xxx.png"]
+      question:
+        "Le 23 juin, vote en faveur du Brexit => cours du GBP en EUR \n What's comming next?",
+      imageQuestion: "images/questions/macroeconomy/mq1/question1.png",
+      vol: -0.0786,
+      correctAnswer: [
+        "sell",
+        "The reason of this is...",
+        "images/questions/macroeconomy/mq1/answer1.png"
+      ]
     },
     {
-      question: "MacroeconomyQ2 - What's comming next?",
-      imageQuestion: "img/Id1/question.png",
+      question:
+        "Le 23 juin, vote en faveur du Brexit => cours du GBP en EUR \n What's comming next?",
+      imageQuestion: "images/questions/macroeconomy/mq1/question1.png",
       solutions: ["fall of 10%", "Fall of 20%", "Rise of 5%"],
-      correctAnswer: ["fall of 10%", "The reason of this is...", "img/xxx.png"]
+      correctAnswer: [
+        "sell",
+        "The reason of this is...",
+        "images/questions/macroeconomy/mq1/answer1.png"
+      ]
     }
   ]
 };

@@ -5,11 +5,12 @@ function Quiz(username) {
     photoUser: "./avatar.png"
   };
   this.score = 100000;
-  this.currentBet = 0;
   this.level = level1;
   this.target = this.level.target;
   this.timeLeft = this.level.time;
   this.currentCategory = "";
+  this.currentQuestion = "Are you ready?";
+  this.currentImage = "home.jpg";
   this.questionAlreadyAsked = [];
   this.isGameOver = false;
 }
@@ -37,18 +38,18 @@ Quiz.prototype.generateQuestion = function() {
   switch (this.currentCategory) {
     case "timerPlus":
       this.timeLeft += 60000;
-      console.log(
+      this.currentQuestion =
         "You earn more time to reach your target, new time is " +
-          this.timeLeft +
-          "."
-      );
-      setTimeout(this.launchWheelOfChance(), 3000);
+        this.timeLeft +
+        ".";
+      this.currentImage = "images/timePlus.jpeg";
+      break;
     case "timerMinus":
       this.timeLeft -= 30000;
-      console.log(
-        "You have lost time, too bad... New time is " + this.timeLeft + "."
-      );
-      setTimeout(this.launchWheelOfChance(), 3000);
+      this.currentQuestion =
+        "You have lost time, too bad... New time is " + this.timeLeft + ".";
+      this.currentImage = "images/timeMinus.jpeg";
+      break;
     default:
       // find a question in a bucket build with remainig questions
       var bucket = this.level[this.currentCategory];
@@ -57,9 +58,11 @@ Quiz.prototype.generateQuestion = function() {
 
       // Check question has not been already asked
       if (remainQuestion.length === 0) {
-        console.error("No more question");
+        this.currentQuestion = "No more question";
         this.launchWheelOfChance();
       }
+      this.currentImage = remainQuestion[index].imageQuestion;
+      this.currentQuestion = remainQuestion[index].question;
       this.questionAlreadyAsked.push(remainQuestion[index]);
   }
 };
@@ -73,10 +76,14 @@ Quiz.prototype.processAnswer = function(answer, vol) {
     this.questionAlreadyAsked[this.questionAlreadyAsked.length - 1]
       .correctAnswer[0]
   ) {
+    this.currentQuestion = remainQuestion[index].correctAnswer[1];
+    this.currentImage = remainQuestion[index].correctAnswer[2];
     this.updatePortfolio(vol, true);
     this.checkGame();
     return true;
   }
+  this.currentQuestion = remainQuestion[index].correctAnswer[1];
+  this.currentImage = remainQuestion[index].correctAnswer[2];
   this.updatePortfolio(vol, false);
   this.checkGame();
   return false;
