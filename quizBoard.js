@@ -9,13 +9,17 @@ function Quiz(username) {
   this.target = this.level.target;
   this.timeLeft = this.level.time;
   this.currentCategory = "";
-  this.currentQuestion = "Are you ready?";
-  this.currentImage = "home.jpg";
+  this.currentQuestion = {
+    question: "Are you ready?",
+    imageQuestion: "home.png",
+    vol: 0,
+    correctAnswer: {}
+  };
   this.questionAlreadyAsked = [];
   this.isGameOver = false;
 }
 
-// identify options when user launch the wheel of chance
+// Identify options when user launch the wheel of chance
 Quiz.prototype.wheelOfChance = function() {
   var wheelClassicOptions = ["Fundemental", "Chart", "Macroeconomy"];
   var wheelFunOptions = ["timerPlus", "timerMinus"];
@@ -32,58 +36,56 @@ Quiz.prototype.launchWheelOfChance = function() {
   this.generateQuestion();
 };
 
+// Identify the remaining question for a bucket
+Quiz.prototype.remainQuestion = function() {
+  var bucket = this.level[this.currentCategory];
+  return _.without(bucket, this.questionAlreadyAsked);
+};
+
 // Find a question in the database according to the wheel of chance
 Quiz.prototype.generateQuestion = function() {
   // return apropriate action
   switch (this.currentCategory) {
     case "timerPlus":
       this.timeLeft += 60000;
-      this.currentQuestion =
+      this.currentQuestion.question =
         "You earn more time to reach your target, new time is " +
         this.timeLeft +
         ".";
-      this.currentImage = "images/timePlus.jpeg";
+      this.currentQuestion.imageQuestion = "images/timePlus.jpeg";
       break;
     case "timerMinus":
       this.timeLeft -= 30000;
-      this.currentQuestion =
+      this.currentQuestion.question =
         "You have lost time, too bad... New time is " + this.timeLeft + ".";
-      this.currentImage = "images/timeMinus.jpeg";
+      this.currentQuestion.imageQuestion = "images/timeMinus.jpeg";
       break;
     default:
-      // find a question in a bucket build with remainig questions
-      var bucket = this.level[this.currentCategory];
-      var remainQuestion = _.without(bucket, this.questionAlreadyAsked);
-      var index = Math.floor(Math.random() * remainQuestion.length);
+      // find a question in a bucket build with remaining questions
+      var index = Math.floor(Math.random() * this.remainQuestion().length);
 
       // Check question has not been already asked
-      if (remainQuestion.length === 0) {
-        this.currentQuestion = "No more question";
+      if (this.remainQuestion().length === 0) {
+        this.currentQuestion.question =
+          "No more question, you answered already all!!!";
         this.launchWheelOfChance();
       }
-      this.currentImage = remainQuestion[index].imageQuestion;
-      this.currentQuestion = remainQuestion[index].question;
-      this.questionAlreadyAsked.push(remainQuestion[index]);
+
+      // process actions triggered by the new question
+      this.currentQuestion = this.remainQuestion()[index];
+      this.questionAlreadyAsked.push(this.remainQuestion()[index]);
   }
 };
 
 // Update game with the user answer
 Quiz.prototype.processAnswer = function(answer, vol) {
   vol = parseFloat(vol);
-  console.log(vol);
-  if (
-    answer ===
-    this.questionAlreadyAsked[this.questionAlreadyAsked.length - 1]
-      .correctAnswer[0]
-  ) {
-    this.currentQuestion = remainQuestion[index].correctAnswer[1];
-    this.currentImage = remainQuestion[index].correctAnswer[2];
+
+  if (answer === this.currentQuestion.correctAnswer[0]) {
     this.updatePortfolio(vol, true);
     this.checkGame();
     return true;
   }
-  this.currentQuestion = remainQuestion[index].correctAnswer[1];
-  this.currentImage = remainQuestion[index].correctAnswer[2];
   this.updatePortfolio(vol, false);
   this.checkGame();
   return false;
@@ -99,7 +101,7 @@ Quiz.prototype.updatePortfolio = function(vol, correct) {
 // End of the Game
 Quiz.prototype.endOfTheGame = function() {
   return !this.isGameOver
-    ? console.log("You succed!")
+    ? console.log("You succeed!")
     : console.log("You fail miserabily!");
 };
 
@@ -110,7 +112,5 @@ Quiz.prototype.checkGame = function() {
     this.endOfTheGame();
   } else if (this.score >= this.target) {
     this.endOfTheGame();
-  } else {
-    this.launchWheelOfChance();
   }
 };
