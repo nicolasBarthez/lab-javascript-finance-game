@@ -3,9 +3,11 @@
   font-size: 10px;
   margin: 0;
   box-sizing: border-box;
+  /*background-color: #f9f9f9;*/
+}
+body {
   background-color: #f9f9f9;
 }
-
 .nav-bar {
   display: flex;
   align-items: center;
@@ -72,43 +74,45 @@ h1 {
 }
 
 .block-left {
-  padding: 170px 20px;
+  padding: 30px 20px;
   margin-right: 30px;
   width: 20%;
 }
 
-.container-left {
-  background-color: rgba(23, 39, 58, 1);
+.container-left-up {
+  border: 1px solid rgba(23, 39, 58, 0.5);
   border-radius: 8px;
   font-size: 30px;
   width: 300px;
-  padding: 20px;
+  padding: 5px 20px 20px;
   margin: auto;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .level-detail,
 .score-detail,
-.time-detail,
 .target-detail {
-  background-color: rgba(23, 39, 58, 1);
   border: none;
-  color: #f9f9f9;
+  color: rgba(23, 39, 58, 1);
   font-weight: bold;
   padding: 10px 0;
   font-size: 1.9rem;
+  text-align: center;
 }
 #target,
-#timer,
 #score {
   font-size: 2rem;
   font-weight: 300;
-  background-color: rgba(23, 39, 58, 1);
+  text-align: center;
 }
 
 .wheel-container {
-  padding: 40px 20px;
+  padding: 20px 40px;
 }
-
+#btn-launch-wheel {
+  margin-left: 50px;
+  margin-bottom: 70px;
+}
 .btn-launch-wheel {
   padding: 10px;
   background-color: yellow;
@@ -126,7 +130,10 @@ h1 {
   font-size: 3rem;
   font-weight: bold;
 }
-
+.rotation {
+  transform: rotate(360deg);
+  transition-duration: 3s;
+}
 .question-details {
   padding: 10px;
   font-size: 2rem;
@@ -138,6 +145,8 @@ h1 {
   border-radius: 5px;
   border: 3px solid grey;
   background-color: lightgrey;
+  width: 918px;
+  overflow-y: scroll;
 }
 
 .question1 {
@@ -166,41 +175,263 @@ h1 {
 }
 
 .buy-btn {
+  height: 50px;
   width: 100px;
-  border-radius: 5px;
+  border: none;
   color: white;
+  text-align: center;
+  text-decoration: none;
   font-size: 1.5rem;
-  font-weight: bolder;
-  background-color: green;
+  border-radius: 5px;
+  box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7),
+    -1px 2px 20px rgba(255, 255, 255, 0.6) inset;
+  background-color: #4caf50;
+  margin-right: 5px;
 }
 
 .sell-btn {
+  height: 50px;
   width: 100px;
-  border-radius: 5px;
+  border: none;
   color: white;
+  text-align: center;
+  text-decoration: none;
   font-size: 1.5rem;
-  font-weight: bolder;
-  background-color: red;
+  border-radius: 5px;
+  box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7),
+    -1px 2px 20px rgba(255, 255, 255, 0.6) inset;
+  background-color: #ff0000;
 }
 
 .block-right {
-  padding: 170px 20px;
+  padding: 40px 20px;
   margin-right: 30px;
   width: 20%;
 }
 
-.container-right {
-  background-color: lightgrey;
-  border-radius: 5px;
-  font-size: 20px;
+.container-left-down {
   width: 300px;
-  padding: 20px;
-  margin: auto;
+  height: 350px;
+  padding: 5px 20px 20px;
+  margin: 30px auto;
+  border: 1px solid rgba(23, 39, 58, 0.5);
+  border-radius: 8px;
+  font-size: 30px;
+  text-align: center;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  overflow-y: scroll;
 }
 .history {
-  background-color: lightgrey;
   border-radius: 5px;
   font-size: 20px;
   padding: 10px 20px 40px;
   margin: auto;
+}
+.block-time {
+  width: 300px;
+  height: 210px;
+  padding: 5px 20px 20px;
+  text-align: center;
+}
+
+.time-header {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+#timer {
+  font-size: 5rem;
+  font-weight: bolder;
+}
+
+.checkbox-true {
+  position: absolute;
+  width: 100%;
+  clip: rect(80px, 270px, 700px, 150px);
+}
+.news {
+  display: flex;
+}
+
+.news-block {
+  display: flex;
+  padding: 5px;
+}
+.p-news-container {
+  margin-left: 10px;
+  font-size: 1.2rem;
+}
+
+#screen-game-over {
+  color: white;
+  margin-top: -15px;
+  font-size: 42px;
+  font-family: Arial, Helvetica, sans-serif;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.feedback-sum {
+  width: 100%;
+  padding: 20px;
+  font-size: 2rem;
+}
+.feedback-block {
+  margin: auto;
+}
+
+.p-feedback-container {
+  font-size: 2rem;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+#title-screen-game-over {
+  position: relative;
+  margin-top: 200px;
+  text-align: center;
+  color: #f9f9f9;
+  font-size: 7rem;
+  background-color: inherit;
+}
+
+#restart {
+  margin-top: 200px;
+  box-shadow: 0 1px 1px #33333d;
+  border-radius: 5px;
+  width: 200px;
+  font-size: 3rem;
+  font-weight: 400;
+  color: #f9f9f9;
+  background-image: -webkit-linear-gradient(#40404b, #373744);
+  background-image: -o-linear-gradient(#40404b, #373744);
+  background-image: linear-gradient(#40404b, #373744);
+}
+
+/* SCREEN LOG IN
+-------------------------------------------------- */
+#screen-log-in {
+  color: black;
+  font-size: 42px;
+  font-family: Arial, Helvetica, sans-serif;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+form {
+  margin-top: 60px;
+  margin-left: 700px;
+}
+
+label,
+input {
+  margin-right: 20px;
+  font-size: 1.5rem;
+}
+
+.formul {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+}
+.logo-container-logIn {
+  width: 150px;
+  padding: 10px;
+}
+
+.logo-container-logIn img {
+  width: 150px;
+  padding: 10px;
+}
+#title-screen-log {
+  font-size: 4rem;
+  font-weight: 500;
+}
+
+#startGame {
+  margin-top: 70px;
+  box-shadow: 0 1px 1px #33333d;
+  border-radius: 5px;
+  width: 150px;
+  font-size: 2rem;
+  font-weight: 400;
+  color: #f9f9f9;
+  background-image: -webkit-linear-gradient(#40404b, #373744);
+  background-image: -o-linear-gradient(#40404b, #373744);
+  background-image: linear-gradient(#40404b, #373744);
+}
+/* Center align the text within the three columns below start button */
+.marketing .col-lg-4 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.marketing h2 {
+  font-weight: 500;
+}
+.marketing .col-lg-4 p {
+  margin-right: 3rem;
+  margin-left: 3rem;
+  font-size: 2rem;
+  font-style: italic;
+}
+.icon {
+  border: 4px solid white;
+  border-radius: 50%;
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+.marketing {
+  background-color: rgba(23, 39, 58, 0.5);
+  bottom: 0;
+  padding: 25px 100px 20px;
+  color: white;
+}
+
+.register {
+  margin-bottom: 60px;
+}
+
+.marketing-title {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-weight: bolder;
+}
+
+/****************/
+/* WIN SCREEN*/
+.leaderboard {
+  position: absolute;
+  padding: 15%;
+  padding-top: 5%;
+  z-index: 10;
+  width: 100%;
+  top: 0px;
+  bottom: 0px;
+  background-color: #f9f9f9;
+}
+.nextLevel-button {
+  width: 100%;
+  padding: 400px;
+}
+
+#nextLevel {
+  margin-left: 100px;
+  box-shadow: 0 1px 1px #33333d;
+  border-radius: 5px;
+  width: 200px;
+  font-size: 3rem;
+  font-weight: 400;
+  color: #f9f9f9;
+  background-image: -webkit-linear-gradient(#40404b, #373744);
+  background-image: -o-linear-gradient(#40404b, #373744);
+  background-image: linear-gradient(#40404b, #373744);
 }

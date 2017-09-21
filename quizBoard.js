@@ -4,16 +4,20 @@ function Quiz(username) {
     username: username,
     photoUser: "./avatar.png"
   };
-  this.score = 100000;
-  this.level = level1;
-  this.target = this.level.target;
-  this.timeLeft = this.level.time;
+  this.score = 1000;
+  this.level = 1;
+  this.file = [level1, "level2", "level3"][this.level - 1];
+  this.target = 1500;
+  this.timeLeft = 10;
+  this.secondsIncrement = 30;
   this.currentCategory = "";
   this.currentQuestion = {
-    question: "Are you ready?",
+    question:
+      "Are you ready? Click on the button on the left to launch the quiz.\nYou have 30 seconds to predict the best position to adopt according the information given.\nGood luck ;-)",
     imageQuestion: "home.png",
     vol: 0,
-    correctAnswer: {}
+    correctAnswer: {},
+    sum: ""
   };
   this.questionAlreadyAsked = [];
   this.isGameOver = false;
@@ -38,7 +42,7 @@ Quiz.prototype.launchWheelOfChance = function() {
 
 // Identify the remaining question for a bucket
 Quiz.prototype.remainQuestion = function() {
-  var bucket = this.level[this.currentCategory];
+  var bucket = this.file[this.currentCategory];
   return _.without(bucket, this.questionAlreadyAsked);
 };
 
@@ -47,18 +51,20 @@ Quiz.prototype.generateQuestion = function() {
   // return apropriate action
   switch (this.currentCategory) {
     case "timerPlus":
-      this.timeLeft += 60000;
+      this.timeLeft += 10;
       this.currentQuestion.question =
         "You earn more time to reach your target, new time is " +
         this.timeLeft +
         ".";
-      this.currentQuestion.imageQuestion = "images/timePlus.jpeg";
+      this.currentQuestion.imageQuestion =
+        "https://media.giphy.com/media/3oz8xKaR836UJOYeOc/source.gif";
       break;
     case "timerMinus":
-      this.timeLeft -= 30000;
+      this.timeLeft -= 10;
       this.currentQuestion.question =
         "You have lost time, too bad... New time is " + this.timeLeft + ".";
-      this.currentQuestion.imageQuestion = "images/timeMinus.jpeg";
+      this.currentQuestion.imageQuestion =
+        "https://media.giphy.com/media/3oKIPwv9exqYPaB03K/source.gif";
       break;
     default:
       // find a question in a bucket build with remaining questions
@@ -83,6 +89,7 @@ Quiz.prototype.processAnswer = function(answer, vol) {
 
   if (answer === this.currentQuestion.correctAnswer[0]) {
     this.updatePortfolio(vol, true);
+    this.timeLeft += 10;
     this.checkGame();
     return true;
   }
@@ -101,8 +108,8 @@ Quiz.prototype.updatePortfolio = function(vol, correct) {
 // End of the Game
 Quiz.prototype.endOfTheGame = function() {
   return !this.isGameOver
-    ? console.log("You succeed!")
-    : console.log("You fail miserabily!");
+    ? $(".leaderboard").show()
+    : $("#screen-game-over").show();
 };
 
 // Check end Game
@@ -112,5 +119,25 @@ Quiz.prototype.checkGame = function() {
     this.endOfTheGame();
   } else if (this.score >= this.target) {
     this.endOfTheGame();
+  }
+};
+
+// Timer function
+Quiz.prototype.startTimer = function() {
+  var self = this;
+  this.timer = setInterval(function() {
+    self.checkTimer();
+  }, 1000);
+};
+
+Quiz.prototype.checkTimer = function() {
+  if (this.timeLeft > 0) {
+    this.timeLeft--;
+    // console.log(this.secondsLeft);
+  } else {
+    clearInterval(this.timer);
+    this.isGameOver = true;
+    this.endOfTheGame();
+    // console.log("You lost!");
   }
 };
