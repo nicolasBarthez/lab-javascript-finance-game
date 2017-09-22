@@ -8,6 +8,10 @@
 body {
   background-color: #f9f9f9;
 }
+
+/* NAV BAR
+---------------------------*/
+
 .nav-bar {
   display: flex;
   align-items: center;
@@ -68,10 +72,16 @@ h1 {
   height: 5px;
 }
 
+/* MAIN CONTAINER
+--------------------------------*/
+
 .main-container {
   padding: 10px;
   display: flex;
 }
+
+/* BLOCK level left
+---------------------------------*/
 
 .block-left {
   padding: 30px 20px;
@@ -106,21 +116,45 @@ h1 {
   text-align: center;
 }
 
-.wheel-container {
-  padding: 20px 40px;
+.container-left-down {
+  width: 300px;
+  height: 350px;
+  padding: 5px 20px 20px;
+  margin: 30px auto;
+  border: 1px solid rgba(23, 39, 58, 0.5);
+  border-radius: 8px;
+  font-size: 30px;
+  text-align: center;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  overflow-y: scroll;
 }
-#btn-launch-wheel {
-  margin-left: 50px;
-  margin-bottom: 70px;
+.history {
+  border-radius: 5px;
+  font-size: 20px;
+  padding: 10px 20px 40px;
+  margin: auto;
 }
-.btn-launch-wheel {
-  padding: 10px;
-  background-color: yellow;
-  border-radius: 50%;
-  color: black;
-  font-size: 2rem;
-  font-weight: bold;
+
+/*.checkbox-true {
+  position: absolute;
+  width: 100%;
+  clip: rect(80px, 270px, 700px, 150px);
+}*/
+.news {
+  display: flex;
 }
+
+.news-block {
+  display: flex;
+  padding: 5px;
+}
+.p-news-container {
+  margin-left: 10px;
+  font-size: 1.2rem;
+}
+
+/* BLOCK CENTER
+-------------------------*/
 
 .block-center {
   padding: 10px;
@@ -168,6 +202,9 @@ h1 {
   font-style: italic;
   padding: 10px;
 }
+
+/* BLOCK RIGHT
+------------------------------*/
 .answer-btn {
   display: flex;
   justify-content: space-around;
@@ -209,24 +246,22 @@ h1 {
   width: 20%;
 }
 
-.container-left-down {
-  width: 300px;
-  height: 350px;
-  padding: 5px 20px 20px;
-  margin: 30px auto;
-  border: 1px solid rgba(23, 39, 58, 0.5);
-  border-radius: 8px;
-  font-size: 30px;
-  text-align: center;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  overflow-y: scroll;
+.wheel-container {
+  padding: 20px 40px;
 }
-.history {
-  border-radius: 5px;
-  font-size: 20px;
-  padding: 10px 20px 40px;
-  margin: auto;
+#btn-launch-wheel {
+  margin-left: 50px;
+  margin-bottom: 70px;
 }
+.btn-launch-wheel {
+  padding: 10px;
+  background-color: yellow;
+  border-radius: 50%;
+  color: black;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
 .block-time {
   width: 300px;
   height: 210px;
@@ -242,24 +277,6 @@ h1 {
 #timer {
   font-size: 5rem;
   font-weight: bolder;
-}
-
-.checkbox-true {
-  position: absolute;
-  width: 100%;
-  clip: rect(80px, 270px, 700px, 150px);
-}
-.news {
-  display: flex;
-}
-
-.news-block {
-  display: flex;
-  padding: 5px;
-}
-.p-news-container {
-  margin-left: 10px;
-  font-size: 1.2rem;
 }
 
 #screen-game-over {
@@ -406,8 +423,9 @@ input {
   font-weight: bolder;
 }
 
-/****************/
-/* WIN SCREEN*/
+/* WIN SCREEN - NEXT LEVEL
+-----------------------------------*/
+
 .leaderboard {
   position: absolute;
   padding: 15%;

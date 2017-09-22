@@ -1,19 +1,21 @@
 // Object constructor
-function Quiz(username) {
+function Quiz() {
   this.playerOne = {
-    username: username,
-    photoUser: "./avatar.png"
+    name: "name",
+    username: "username",
+    pic: "./avatar.png"
   };
   this.score = 1000;
-  this.level = 1;
-  this.file = [level1, "level2", "level3"][this.level - 1];
-  this.target = 1500;
+  this.level = 0;
+  this.file = level1;
+  this.levelList = [level1, level2, level3];
+  this.targetOfLevel = this.file.target;
   this.timeLeft = 10;
   this.secondsIncrement = 30;
   this.currentCategory = "";
   this.currentQuestion = {
     question:
-      "Are you ready? Click on the button on the left to launch the quiz.\nYou have 30 seconds to predict the best position to adopt according the information given.\nGood luck ;-)",
+      "Are you ready? Click on the button on the right to launch the quiz.\nYou have 30 seconds to predict the best position to adopt according the information given.\nGood luck ;-)",
     imageQuestion: "home.png",
     vol: 0,
     correctAnswer: {},
@@ -42,8 +44,16 @@ Quiz.prototype.launchWheelOfChance = function() {
 
 // Identify the remaining question for a bucket
 Quiz.prototype.remainQuestion = function() {
-  var bucket = this.file[this.currentCategory];
-  return _.without(bucket, this.questionAlreadyAsked);
+  var questionCat = this.file[this.currentCategory];
+  var bucket = questionCat.map(function(el) {
+    return el.id;
+  });
+  console.log("question already asked is: " + this.questionAlreadyAsked);
+  return _.without(bucket, ...this.questionAlreadyAsked).map(function(qId) {
+    return questionCat.find(function(qObj) {
+      return qObj.id === qId;
+    });
+  });
 };
 
 // Find a question in the database according to the wheel of chance
@@ -53,16 +63,16 @@ Quiz.prototype.generateQuestion = function() {
     case "timerPlus":
       this.timeLeft += 10;
       this.currentQuestion.question =
-        "You earn more time to reach your target, new time is " +
-        this.timeLeft +
-        ".";
+        "You win 10 seconds! Click on the button to ask a new question.";
       this.currentQuestion.imageQuestion =
         "https://media.giphy.com/media/3oz8xKaR836UJOYeOc/source.gif";
       break;
     case "timerMinus":
       this.timeLeft -= 10;
       this.currentQuestion.question =
-        "You have lost time, too bad... New time is " + this.timeLeft + ".";
+        "Ooups… you’ve lost 10 seconds! You win 10 seconds! Click on the button to ask a new question." +
+        this.timeLeft +
+        ".";
       this.currentQuestion.imageQuestion =
         "https://media.giphy.com/media/3oKIPwv9exqYPaB03K/source.gif";
       break;
@@ -72,14 +82,12 @@ Quiz.prototype.generateQuestion = function() {
 
       // Check question has not been already asked
       if (this.remainQuestion().length === 0) {
-        this.currentQuestion.question =
-          "No more question, you answered already all!!!";
-        this.launchWheelOfChance();
+        alert("No more question, you answered already all!!!");
       }
 
       // process actions triggered by the new question
       this.currentQuestion = this.remainQuestion()[index];
-      this.questionAlreadyAsked.push(this.remainQuestion()[index]);
+      this.questionAlreadyAsked.push(this.remainQuestion()[index].id);
   }
 };
 
@@ -117,7 +125,7 @@ Quiz.prototype.checkGame = function() {
   if (this.score <= 0) {
     this.isGameOver = true;
     this.endOfTheGame();
-  } else if (this.score >= this.target) {
+  } else if (this.score >= this.targetOfLevel) {
     this.endOfTheGame();
   }
 };
