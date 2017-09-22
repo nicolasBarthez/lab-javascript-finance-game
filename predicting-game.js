@@ -47,9 +47,6 @@ $(document).ready(function() {
     $(".response-detail").text("");
     game.launchWheelOfChance();
     refreshData();
-    // $("#question-category").text(game.currentCategory);
-    // $("#question-details").text(game.currentQuestion.question);
-    // $("#img-q-r").attr("src", game.currentQuestion.imageQuestion);
   });
 
   // ********************************
