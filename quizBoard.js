@@ -10,7 +10,7 @@ function Quiz() {
   this.file = level1;
   this.levelList = [level1, level2, level3];
   this.targetOfLevel = this.file.target;
-  this.timeLeft = 10;
+  this.timeLeft = 30;
   this.secondsIncrement = 30;
   this.currentCategory = "";
   this.currentQuestion = {
